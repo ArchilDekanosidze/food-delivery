@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Auth::routes();
 
@@ -36,3 +37,6 @@ Route::get('/gallery/{type}', [App\Http\Controllers\HomeController::class, 'gall
 Route::get('/blogs', [App\Http\Controllers\HomeController::class, 'blog'])->name('allblogs');
 Route::get('/blog/{blog}', [App\Http\Controllers\HomeController::class, 'getBlog'])->name('get.blog');
 Route::get('/category/blog/{id}', [App\Http\Controllers\HomeController::class, 'getCategoryBlogs'])->name('category.blog');
+
+Route::get('/testEmail', [TestController::class, 'testEmail']);
+Route::get('/testSms', [TestController::class, 'testSms']);

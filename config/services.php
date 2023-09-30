@@ -30,5 +30,18 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+	
+	'sms' => [
+        'auth' => [
+            'uname' => env('SMS_uname'),
+            'pass' => env('SMS_pass'),
+            'from' => env('SMS_from'),
+        ],
+        'patterns' => [
+            'verification' => 'e9ssnpjkcqbtjlt',
+        ],
+        'baseUri' => env('SMS_uri'),
+    ],
+
 
 ];
