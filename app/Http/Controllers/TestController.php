@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Jobs\SendSms;
-use App\Jobs\SendEmail;
+use App\Jobs\Notification\SendEmail;
+use App\Jobs\Notification\SendSmsWithNumber;
 use App\Mail\UserRegistered;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Services\Notification\Providers\SmsProviders\Contracts\SmsTypes;
 
 class TestController extends Controller
 {
@@ -19,9 +19,11 @@ class TestController extends Controller
 
     public function testSms()
     {
-        $user = User::find(1);
-        $text = '123';
-        SendSms::dispatch($user, $text);
+        $data = [
+            'type' => SmsTypes::VERIFICATION_CODE,
+            'variables' => ['verificationCode' => '8'],
+        ];
+        SendSmsWithNumber::dispatchSync(['09120919921'], $data);return;
     }
 
 }
